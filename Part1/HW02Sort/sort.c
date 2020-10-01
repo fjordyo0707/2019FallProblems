@@ -26,6 +26,15 @@ bool checkOrder(int * arr, int size)
 
 // YOU MUST MODIFY THIS FUNCTION
 #ifdef TEST_SORT
+
+#ifdef TEST_SWAP
+void swap(int * a, int * b){
+  int temp = * a;
+  *a = *b;
+  *b = temp;
+}
+#endif
+
 void ssort(int * arr, int size)
 {
   // This function has two levels of for
@@ -42,5 +51,15 @@ void ssort(int * arr, int size)
 
   // After finding the smallest element among the unsorted elements,
   // swap it with the element of the index from the first level
+  for(int i = 0; i < size - 1 ; ++i){
+    int smallest_idx = i;
+    for(int j = i + 1; j < size; ++j){
+      if (arr[j] < arr[smallest_idx]){
+        smallest_idx = j;
+      }
+    }
+    swap(&arr[i], &arr[smallest_idx]);
+  }
 }
 #endif
+
