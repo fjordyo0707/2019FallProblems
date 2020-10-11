@@ -11,13 +11,14 @@ TESTFALGS = -DTEST_SWAP -DTEST_SORT
 SRCS = main.c sort.c
 OBJS = $(SRCS:%.c=%.o)
 
-testall: test1 test2 test3 g_case
 
 sort: $(OBJS) 
 	$(GCC) $(TESTFALGS) $(OBJS) -o sort
 
 .c.o: 
 	$(GCC) $(TESTFALGS) -c $*.c 
+
+testall: test1 test2 test3 g_case
 
 test1: sort
 	./sort inputs/test1 > output1
