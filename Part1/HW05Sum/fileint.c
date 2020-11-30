@@ -20,6 +20,9 @@ bool addFile(char * filename, int * sum)
   FILE * fp;
   fp = fopen(filename, "r");
   if (fp == NULL) {
+    #ifdef MESSAGE
+    printf("The reading file is not existed or break.\n");
+    #endif
     return false;
   } else {
     while(true){
@@ -46,6 +49,9 @@ bool writeSum(char * filename, int sum)
   FILE * fp;
   fp = fopen(filename, "w+");
   if (fp == NULL) {
+    #ifdef MESSAGE
+    printf("The writing file is not existed or break.\n");
+    #endif
     return false;
   } else {
     fprintf(fp, "%d\n", sum);
