@@ -16,6 +16,20 @@ bool addFile(char * filename, int * sum)
   // * sum stores the result of adding all numbers from the file
   // When no more numbers can be read, fclose, return true
   //
+  *sum = 0;
+  FILE * fp;
+  fp = fopen(filename, "r");
+  if (fp == NULL) {
+    return false;
+  } else {
+    while(true){
+      int number;
+      if(fscanf(fp, "%d", &number) != 1)
+        break;
+      *sum = *sum + number;
+    }
+    fclose(fp);
+  }
   return true;
 }
 #endif
@@ -29,6 +43,14 @@ bool writeSum(char * filename, int sum)
   // fprintf should use one newline '\n'
   // fclose, return true
   //
+  FILE * fp;
+  fp = fopen(filename, "w+");
+  if (fp == NULL) {
+    return false;
+  } else {
+    fprintf(fp, "%d\n", sum);
+    fclose(fp);
+  }
   return true;
 }
 #endif
